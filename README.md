@@ -1,2 +1,3 @@
 # guild_project
-Project for the 
+Project for the Guild Project
+

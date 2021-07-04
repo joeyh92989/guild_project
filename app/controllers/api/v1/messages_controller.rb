@@ -4,12 +4,14 @@ class Api::V1::MessagesController < ApplicationController
   def create
     message = Message.new(user_id: @receiver.id, sender_id: @sender.id, message: params[:message])
     if message.save
-    render json: MessageSerializer.new(message), status: :created
+      render json: MessageSerializer.new(message), status: :created
     else
+      render json: { errors: message.errors.full_messages }, status: :bad_request
     end
   end
 
   private
+
   def set_receiver
     @receiver = User.find_by(id: params[:user_id])
   end
@@ -17,5 +19,4 @@ class Api::V1::MessagesController < ApplicationController
   def set_sender
     @sender = User.find_by(id: params[:sender])
   end
-
 end

@@ -16,7 +16,6 @@ describe 'Message Create' do
           "message": 'test'
         }
         message = JSON.parse(response.body, symbolize_names: true)
-        binding.pry
         expect(response).to be_successful
         expect(response.status).to eq(201)
         expect(message[:data][:attributes]).to have_key(:user)
@@ -28,7 +27,22 @@ describe 'Message Create' do
       end
     end
     describe 'Sad Path' do
-      xit 'sends an error when a messsage of no length is sent' do
+      it 'sends an error when a messsage of no length is sent' do
+        sender = User.create!(
+          user_name: 'Joey'
+        )
+        receiver = User.create!(
+          user_name: 'Val'
+        )
+        post '/api/v1/messages', params: {
+          "user_id": receiver.id,
+          "sender": sender.id,
+          "message": ''
+        }
+        message = JSON.parse(response.body, symbolize_names: true)
+        expect(response.status).to eq(400)
+        expect(message).to have_key(:errors)
+
       end
     end
   end

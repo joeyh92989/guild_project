@@ -10,8 +10,7 @@ describe 'Message Create' do
         receiver = User.create!(
           user_name: 'Val'
         )
-        post '/api/v1/messages', params: {
-          "user_id": receiver.id,
+        post "/api/v1/messages/#{receiver.id}", params: {
           "sender": sender.id,
           "message": 'test'
         }
@@ -34,8 +33,7 @@ describe 'Message Create' do
         receiver = User.create!(
           user_name: 'Val'
         )
-        post '/api/v1/messages', params: {
-          "user_id": receiver.id,
+        post "/api/v1/messages/#{receiver.id}", params: {
           "sender": sender.id,
           "message": ''
         }

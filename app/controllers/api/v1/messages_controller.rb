@@ -23,6 +23,19 @@ class Api::V1::MessagesController < ApplicationController
     end
   end
 
+  def index
+    case params[:last_30_days]
+    when 'true'
+      messages = Message.where('created_at > ?', 30.days.ago)
+      render json: MessageSerializer.new(messages)
+    when 'false'
+      messages = Message.all.limit(100)
+      render json: MessageSerializer.new(messages)
+    else
+      render json: { errors: 'missing required params' }, status: :bad_request
+    end
+  end
+
   private
 
   def set_receiver

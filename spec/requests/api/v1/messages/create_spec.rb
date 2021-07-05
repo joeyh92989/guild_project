@@ -42,6 +42,35 @@ describe 'Message Create' do
         expect(message).to have_key(:errors)
 
       end
+      it 'sends an error when the recipient does not exist' do
+        sender = User.create!(
+          user_name: 'Joey',
+          id: 2
+        )
+
+        post "/api/v1/messages/1", params: {
+          "sender": sender.id,
+          "message": ''
+        }
+        message = JSON.parse(response.body, symbolize_names: true)
+        expect(response.status).to eq(404)
+        expect(message).to have_key(:errors)
+
+      end
+      it 'sends an error when the sender does not exist' do
+        receiver = User.create!(
+          user_name: 'Val',
+          id: 1
+        )
+        post "/api/v1/messages/1", params: {
+          "sender": 2,
+          "message": ''
+        }
+        message = JSON.parse(response.body, symbolize_names: true)
+        expect(response.status).to eq(404)
+        expect(message).to have_key(:errors)
+
+      end
     end
   end
 end

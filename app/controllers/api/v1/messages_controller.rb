@@ -8,6 +8,8 @@ class Api::V1::MessagesController < ApplicationController
     else
       render json: { errors: message.errors.full_messages }, status: :bad_request
     end
+  rescue NoMethodError
+    render json: {errors: "recipient or sender not found"}, status: :not_found
   end
 
   def conversation_history

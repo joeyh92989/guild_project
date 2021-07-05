@@ -21,7 +21,7 @@ ActiveRecord::Schema.define(version: 2021_07_04_175718) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "message"
-    t.index ["user_id", "sender_id"], name: "index_messages_on_user_id_and_sender_id", unique: true
+    t.index ["user_id", "sender_id"], name: "index_messages_on_user_id_and_sender_id"
   end
 
   create_table "users", force: :cascade do |t|

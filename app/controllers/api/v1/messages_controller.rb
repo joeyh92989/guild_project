@@ -22,7 +22,7 @@ class Api::V1::MessagesController < ApplicationController
       render json: { errors: 'missing required params' }, status: :bad_request
     end
   end
-  
+
   def index
     case params[:last_30_days]
     when 'true'

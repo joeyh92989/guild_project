@@ -10,23 +10,19 @@ describe 'conversation history' do
         receiver = User.create!(
           user_name: 'Val'
         )
-        binding.pry
         create_list(:message, 110, user_id: receiver.id, sender_id: sender.id)
-        binding.pry
         get "/api/v1/messages/#{receiver.id}", params: {
-          "user_id": receiver.id,
-          "sender": sender.id,
-          "message": 'test'
+          "sender": sender.id
         }
-        message = JSON.parse(response.body, symbolize_names: true)
+        messages = JSON.parse(response.body, symbolize_names: true)
         expect(response).to be_successful
-        expect(response.status).to eq(201)
-        expect(message[:data][:attributes]).to have_key(:user)
-        expect(message[:data][:attributes][:user][:id]).to eq(receiver.id)
-        expect(message[:data][:attributes]).to have_key(:sender)
-        expect(message[:data][:attributes][:sender][:id]).to eq(sender.id)
-        expect(message[:data][:attributes]).to have_key(:message)
-        expect(message[:data][:attributes][:message]).to eq("test")
+        expect(response.status).to eq(200)
+        expect(messages[:data].count).to eq(100)
+        expect(messages[:data].first[:attributes]).to have_key(:user)
+        expect(messages[:data].first[:attributes][:user][:id]).to eq(receiver.id)
+        expect(messages[:data].first[:attributes]).to have_key(:sender)
+        expect(messages[:data].first[:attributes][:sender][:id]).to eq(sender.id)
+        expect(messages[:data].first[:attributes]).to have_key(:message)
       end
     end
     describe 'Sad Path' do

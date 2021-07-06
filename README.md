@@ -4,6 +4,7 @@
 ## About
 This is a technical project for Guild, to build a backend API for a basic messaging app; specifcally covering the creation of a message and retreiving messages.
 ## Table of contents
+
 [**About**](#about) |
 [**Versions**](#versions) |
 [**Setup**](#setup) |
@@ -11,7 +12,7 @@ This is a technical project for Guild, to build a backend API for a basic messag
 [**Examples**](#examples) |
 [**Tests**](#running-the-tests) |
 [**Database**](#database) |
-[**Considerations and Possible Changes**](#considerations) |
+[**Considerations**](#considerations) |
 
 
 

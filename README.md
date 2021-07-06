@@ -10,9 +10,9 @@ This is a technical project for Guild, to build a backend API for a basic messag
 [**Endpoints**](#endpoints) |
 [**Examples**](#examples) |
 [**Tests**](#running-the-tests) |
-[**Developers**](#developers) |
-[**Considerations and Possible Changes**](#developers) |
-[**Acknowledgements**](#acknowledgements) 
+[**Database**](#database) |
+[**Considerations and Possible Changes**](#considerations) |
+
 
 
 ## Versions
@@ -52,19 +52,9 @@ The following are all API endpoints. Note, some endpoints have optional or requi
 
 Run all tests in application with `bundle exec rspec`. When test is complete, run `open coverage` to see where tests are being run and where they are not.
 
-
-
-## Developers
-* Logan Anderson [GitHub](https://github.com/loganjacob76) • [LinkedIn](https://www.linkedin.com/in/logan-anderson-01b49920a/)
-* Gaelyn Cooper [GitHub](https://github.com/gaelyn) • [LinkedIn](https://www.linkedin.com/in/gaelyn-cooper/)
-* Joey Haas [GitHub](https://github.com/joeyh92989) • [LinkedIn](https://www.linkedin.com/in/haasjoseph/)
-* Joe Mecha [GitHub](https://github.com/joemecha) • [LinkedIn](https://www.linkedin.com/in/joemecha/)
-* Klaudia Stewart [GitHub](https://github.com/klaudiastewart) • [LinkedIn](https://www.linkedin.com/in/klaudia-stewart/)
-
-~ feel free to contact us ~
+## Database
 
 <!-- ![Screenshot](lib/images/ADD-A-SCREENSHOT) -->
 
-## Acknowledgments
+## Considerations and Possible Changes
 
-Thank you to Weather and Open Top Data for allowing us to use your API's. Also, thanks to Open Beer db for your CSV database. We'd like to thank Turing School of Software and Engineering for helping me come up with the idea for this application, and thank you for reading through this project!

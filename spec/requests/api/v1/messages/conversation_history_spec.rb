@@ -24,6 +24,10 @@ describe 'conversation history' do
         expect(messages[:data].first[:attributes]).to have_key(:sender)
         expect(messages[:data].first[:attributes][:sender][:id]).to eq(sender.id)
         expect(messages[:data].first[:attributes]).to have_key(:message)
+        expect(messages[:data].first[:attributes]).to have_key(:created_at)
+        expect(
+          messages[:data].first[:attributes][:created_at] >= messages[:data].second[:attributes][:created_at]
+        ).to eq(true)
       end
       it 'sends a succesful response with all messages from the last 30 days if requested' do
         sender = User.create!(
@@ -32,8 +36,8 @@ describe 'conversation history' do
         receiver = User.create!(
           user_name: 'Val'
         )
-        create_list(:message, 20, user_id: receiver.id, sender_id: sender.id )
-        create_list(:message, 20, user_id: receiver.id, sender_id: sender.id, created_at: Time.now - 50.day )
+        create_list(:message, 20, user_id: receiver.id, sender_id: sender.id)
+        create_list(:message, 20, user_id: receiver.id, sender_id: sender.id, created_at: Time.now - 50.days)
         get "/api/v1/messages/#{receiver.id}", params: {
           "sender": sender.id,
           "last_30_days": true
@@ -47,6 +51,10 @@ describe 'conversation history' do
         expect(messages[:data].first[:attributes]).to have_key(:sender)
         expect(messages[:data].first[:attributes][:sender][:id]).to eq(sender.id)
         expect(messages[:data].first[:attributes]).to have_key(:message)
+        expect(messages[:data].first[:attributes]).to have_key(:created_at)
+        expect(
+          messages[:data].first[:attributes][:created_at] >= messages[:data].second[:attributes][:created_at]
+        ).to eq(true)
       end
     end
     describe 'Sad Path' do
@@ -58,12 +66,11 @@ describe 'conversation history' do
           user_name: 'Val'
         )
         get "/api/v1/messages/#{receiver.id}", params: {
-          "sender": sender.id,
+          "sender": sender.id
         }
         message = JSON.parse(response.body, symbolize_names: true)
         expect(response.status).to eq(400)
         expect(message).to have_key(:errors)
-
       end
       it 'sends an error when a messsage when form requirement is not valid ' do
         sender = User.create!(
@@ -74,12 +81,11 @@ describe 'conversation history' do
         )
         get "/api/v1/messages/#{receiver.id}", params: {
           "sender": sender.id,
-          "last_30_days": "abc"
+          "last_30_days": 'abc'
         }
         message = JSON.parse(response.body, symbolize_names: true)
         expect(response.status).to eq(400)
         expect(message).to have_key(:errors)
-
       end
     end
   end

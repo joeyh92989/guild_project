@@ -25,10 +25,14 @@ describe 'Message index' do
         expect(messages[:data].first[:attributes]).to have_key(:user)
         expect(messages[:data].first[:attributes][:user][:id]).to eq(receiver.id)
         expect(messages[:data].first[:attributes]).to have_key(:sender)
-        expect(messages[:data].first[:attributes][:sender][:id]).to eq(sender1.id)
+        expect(messages[:data].first[:attributes][:sender][:id]).to eq(sender2.id)
         expect(messages[:data].last[:attributes]).to have_key(:sender)
-        expect(messages[:data].last[:attributes][:sender][:id]).to eq(sender2.id)
+        expect(messages[:data].last[:attributes][:sender][:id]).to eq(sender1.id)
         expect(messages[:data].first[:attributes]).to have_key(:message)
+        expect(messages[:data].first[:attributes]).to have_key(:created_at)
+        expect(
+          messages[:data].first[:attributes][:created_at] >= messages[:data].second[:attributes][:created_at]
+        ).to eq(true)
       end
       it 'sends a succesful response with all messages from the last 30 days if requested' do
         sender1 = User.create!(
@@ -53,9 +57,14 @@ describe 'Message index' do
         expect(messages[:data].first[:attributes]).to have_key(:user)
         expect(messages[:data].first[:attributes][:user][:id]).to eq(receiver.id)
         expect(messages[:data].first[:attributes]).to have_key(:sender)
-        expect(messages[:data].first[:attributes][:sender][:id]).to eq(sender1.id)
-        expect(messages[:data].last[:attributes][:sender][:id]).to eq(sender2.id)
+        expect(messages[:data].first[:attributes][:sender][:id]).to eq(sender2.id)
+        expect(messages[:data].last[:attributes][:sender][:id]).to eq(sender1.id)
         expect(messages[:data].first[:attributes]).to have_key(:message)
+        expect(messages[:data].first[:attributes]).to have_key(:created_at)
+        expect(
+          messages[:data].first[:attributes][:created_at] >= messages[:data].second[:attributes][:created_at]
+        ).to eq(true)
+
       end
     end
     describe 'Sad Path' do

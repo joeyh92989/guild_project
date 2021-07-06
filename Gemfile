@@ -35,6 +35,7 @@ gem 'uglifier', '>= 1.3.0'
 gem 'coffee-rails', '~> 4.2'
 gem 'simplecov'
 gem 'fast_jsonapi'
+
 # Use Rack CORS for handling Cross-Origin Resource Sharing (CORS), making cross-origin AJAX possible
 # gem 'rack-cors'
 
@@ -52,7 +53,6 @@ end
 group :test do
   gem 'webmock'
   gem 'vcr'
-  gem 'factory_bot_rails'
   gem 'faker'
   gem 'shoulda-matchers'
   gem 'orderly'

@@ -3,6 +3,7 @@
 [![forthebadge](http://forthebadge.com/images/badges/built-with-love.svg)](http://forthebadge.com)
 ## About
 This is a technical project for Guild, to build a backend API for a basic messaging app; specifcally covering the creation of a message and retreiving messages.
+
 ## Table of contents
 
 [**About**](#about) |
@@ -26,7 +27,7 @@ If you are running this API locally, follow the steps below:
   2. Install gem packages by running `bundle`
   3. Setup the database: `rails db:(drop,create,migrate,seed)` or `rails db:setup`
   4. Run command `rails s` and navigate to http://localhost:3000 to consume API endpoints below via your browser or postman
-
+  5. To determine active user ids in the application for use of create and conversation endpoints run `rails c` to open the rails console, then type `User.all` to return all users in the Database
 
 
 ## Endpoints

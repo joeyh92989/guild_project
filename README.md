@@ -263,3 +263,7 @@ Run all tests in application with `bundle exec rspec`. When test is complete, ru
 * The serializer currently provides alot of detail about each message created, without a firm requirement from the FE consumer of this data i chose to provide records of the User receiving the message, Sender, and message details. This results in a somewhat complex json response, but i would think that some more/less data can be agreed upon with the consumer.
 * I have chosen to enforce some basic requirements on the message, 150 characters or less, these are flexible but i felt that it would be a safe starting point and can be adjusted as needed
 * I have implemented a self referential table to hold the message details; after putting this in place I didn't fully take advantage of this design. It does open up for more functionality later but at this point i don't make much use of its structure.
+* To resolve the requirement of having a 100 records or 30 days I have implemented a rigid structure of requiring an extra parameter of `last_30_days` this requirement could be configured in many different ways to make the api more or less rigid; I chose the current implementation to reduce edge cases and assume this could be better configrued based on needs of the FE. Some other options are below:
+  - if value exceeds 100, pivot to last 30 days
+  - if no value of `last_30_days` is provided it could default to limit 100
+  - set the value to accept 1 or 0 over true/false for ease of interactivty

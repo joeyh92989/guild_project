@@ -30,20 +30,22 @@ If you are running this API locally, follow the steps below:
 
 
 ## Endpoints
-The following are all API endpoints. Note, some endpoints have optional or required query parameters.
+The following are all API endpoints.
 - All endpoints run off base connector http://localhost:3000 on local
 
 ### Messsages:
 
 | Method   | URL                                      | Description                              | params                                 |
 | -------- | ---------------------------------------- | ---------------------------------------- |----------------------------------------|
-| `POST`   | `/api/v1/messages/:user_id`                       | Create a new message                     |user_id: 'Integer', sender_id: 'Integer', message: 'String' |
+| `POST`   | `/api/v1/messages/:user_id`                       | Create a new message                     |sender_id: 'Integer', message: 'String' |
 | `get`    | `/api/v1/messages/:user_id`         | Retrieve all messages between 2 users    |sender_id: 'Integer', last_30_days: 'true' or 'false'|
 | `get`    | `/api/v1/messsages`                      | Retrive all messages in the system       |last_30_days: 'true' or 'false'|
 
 ## Examples
 
 ### A successful message create
+
+`localhost:3000/api/v1/messages/7?sender=8&message=Hello world`
 ```
 {
     "data": {
@@ -69,6 +71,7 @@ The following are all API endpoints. Note, some endpoints have optional or requi
 ```
 
 ### A successful conversation retrieval
+`localhost:3000/api/v1/messages/7?sender=8&last_30_days=true`
 ```
 {
     "data": [
@@ -116,6 +119,7 @@ The following are all API endpoints. Note, some endpoints have optional or requi
 ```
 
 ### A successful message index retrieval
+`localhost:3000/api/v1/messages?last_30_days=false`
 ```
 {
     "data": [

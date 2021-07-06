@@ -37,7 +37,7 @@ The following are all API endpoints. Note, some endpoints have optional or requi
 
 | Method   | URL                                      | Description                              | params                                 |
 | -------- | ---------------------------------------- | ---------------------------------------- |----------------------------------------|
-| `POST`   | `/api/v1/messages`                       | Create a new message                     |user_id: 'Integer', sender_id: 'Integer', message: 'String' |
+| `POST`   | `/api/v1/messages/:user_id`                       | Create a new message                     |user_id: 'Integer', sender_id: 'Integer', message: 'String' |
 | `get`    | `/api/v1/messages/:user_id`         | Retrieve all messages between 2 users    |sender_id: 'Integer', last_30_days: 'true' or 'false'|
 | `get`    | `/api/v1/messsages`                      | Retrive all messages in the system       |last_30_days: 'true' or 'false'|
 
